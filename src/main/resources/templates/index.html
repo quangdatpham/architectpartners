@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Architect Partners</title>
+
+  <link th:href="@{/css/styles.css}" rel="stylesheet">
+
+  <style>
+    .projects-about-us > section {
+      float: left;
+      width: 50%;
+    }
+
+    .images-slide {display: none}
+    img {vertical-align: middle;}
+
+
+    .slideshow-container {
+      max-width: 1000px;
+      position: relative;
+      margin: auto;
+    }
+
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+
+    .dot.active, .dot:hover {
+      background-color: #717171;
+    }
+
+    /* Fading animation */
+    .fade {
+      animation-name: fade;
+      animation-duration: 1.5s;
+    }
+
+    @keyframes fade {
+      from {opacity: .4}
+      to {opacity: 1}
+    }
+  </style>
+</head>
+<body>
+  <header th:insert="fragments/general.html :: header"></header>
+
+  <nav th:insert="fragments/general.html :: topnav"></nav>
+
+  <div class="content">
+    <main>
+      <div>
+        <h2>Contact us about your project - Call tel.1234</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+      molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+      numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+      optio, eaque rerum! Provident similique accusantium nemo autem.</p>
+      </div>
+
+      <hr class="dashed-line">
+
+      <img style="border-radius:16px; object-fit: cover;" width="100%" height="200px" src="https://source.unsplash.com/1200x200?construction" alt="construction">
+
+      <hr class="dashed-line">
+
+      <div class="projects-about-us">
+        <section>
+          <h2><u>Projects</u></h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+          molestiae quas vel sint commodi repudiandae consequuntur.</p>
+        </section>
+
+        <section>
+          <h2><u>About us</u></h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+          molestiae quas vel sint commodi repudiandae consequuntur.</p>
+        </section>
+      </div>
+
+      <hr class="dashed-line">
+
+
+      <div class="slideshow-container">
+        <div class="images-slide fade">
+          <img style="object-fit: cover;" width="100%" height="560px" src="https://source.unsplash.com/1200x560?construction" alt="construction">
+        </div>
+
+        <div class="images-slide fade">
+          <img style="object-fit: cover;" width="100%" height="560px" src="https://source.unsplash.com/1400x560?construction" alt="construction">
+        </div>
+
+        <div class="images-slide fade">
+          <img style="object-fit: cover;" width="100%" height="560px" src="https://source.unsplash.com/1500x560?construction" alt="construction">
+        </div>
+
+      </div>
+      <br>
+
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
+    </main>
+    <div th:insert="fragments/general.html :: right-side"></div>
+  </div>
+
+  <div style="clear: both;"></div>
+  <hr style="margin-top: 120px;">
+
+  <footer th:insert="fragments/general.html :: footer"></footer>
+
+  <script type="text/javascript">
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("images-slide");
+      let dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
+    }
+  </script>
+</body>
+</html>

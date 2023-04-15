@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact</title>
+
+  <link th:href="@{/css/styles.css}" rel="stylesheet">
+
+  <style>
+    input, textarea {
+      padding: 6px 4px;
+      border: 1px #888 solid;
+      border-radius: 4px;
+    }
+
+    .input-group {
+      display: flex;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .input-group > input {
+      flex: 1;
+    }
+
+    .input-group > input:first-child {
+      margin-right: 12px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      margin-right: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header th:insert="fragments/general.html :: header"></header>
+
+  <nav th:insert="fragments/general.html :: topnav"></nav>
+
+  <div class="content">
+    <main>
+      <h1>Contact</h1>
+
+      <h3>AP - Architect Partners</h3>
+
+      <address>
+        Address: 752 Green Street<br>
+        City: Nashville<br>
+        Country: Hamllui<br>
+        <br>
+        Tel: <a href="tel:+0000000000">+0000000000</a><br>
+        Email: <a href="mailto:info@architectpartners.com">info@architectpartners.com</a>
+      </address>
+
+      <img width="310px" th:src="@{/images/contact-us.png}" alt="contact-us">
+
+      <hr class="dashed-line">
+
+      <form name="contactMessage" onsubmit="return onSubmitContactMessage(event)" style="margin-top: 64px;">
+        <label for="name">Write your message here. Fill out the form:</label><br><br>
+        <div class="input-group">
+          <input type="text" id="name" placeholder="Write your name here" required>
+          <input type="email" id="email" placeholder="Writer your email here" required>
+        </div>
+        <textarea id="message" placeholder="Writer your message here" required></textarea>
+        <div style="text-align: right;">
+          <input style="margin-top: 16px;" class="btn" type="submit" value="Send - Click here">
+        </div>
+      </form>
+
+    </main>
+    <div th:insert="fragments/general.html :: right-side"></div>
+  </div>
+
+  <div style="clear: both;"></div>
+  <hr style="margin-top: 120px;">
+
+  <footer th:insert="fragments/general.html :: footer"></footer>
+
+  <script type="text/javascript">
+    function onSubmitContactMessage(event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      fetch('/api/contactMessages/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: document.forms.contactMessage.name.value,
+          email: document.forms.contactMessage.email.value,
+          message: document.forms.contactMessage.message.value
+        }),
+      })
+        .then(res => {
+          if (res.status === 201) {
+            alert('Thanks for contacting us!');
+            document.forms.contactMessage.reset();
+          } else {
+            alert('Failed to submit the form!');
+          }
+        });
+    }
+  </script>
+</body>
+</html>

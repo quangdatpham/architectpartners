@@ -1,0 +1,4 @@
+INSERT INTO public.project_pictures (id,alternative_text,created_on,desktop_url,mobile_url,updated_on,project_id,tablet_url) VALUES
+	 (0,'Hello','2023-03-18 00:00:00','https://source.unsplash.com/2000x2000?construction','https://source.unsplash.com/800x800?construction','2023-03-18 00:00:00',0,'https://source.unsplash.com/1200x1200?construction'),
+	 (1,'Hi','2023-03-18 00:00:00','https://source.unsplash.com/2000x1800?construction','https://source.unsplash.com/700x800?construction','2023-03-18 00:00:00',1,'https://source.unsplash.com/1200x1000?construction'),
+	 (2,'Hi There','2023-03-18 00:00:00','https://source.unsplash.com/1800x1800?construction','https://source.unsplash.com/850x800?construction','2023-03-18 00:00:00',2,'https://source.unsplash.com/1200x1400?construction');
